@@ -1,4 +1,4 @@
-"""This file is a math game that involves different levels to test the user's skills"""
+"""This file is a math game that involves different levels to test the user's skills""" #Add docstring to explain purpose
 import tkinter as tk
 from tkinter import messagebox
 import random
@@ -10,7 +10,7 @@ class MathGame:
         self.root = root
         self.root.title("Number Ninjas by Flow Computing")
         self.root.configure(bg="#f6bfdd")
-
+        # Initialize game state variables
         self.timer_id = None
         self.time_remaining = 10
         self.points = 0
@@ -19,30 +19,31 @@ class MathGame:
         self.incorrect_answers = 0
         self.correct_answer = None
         self.problem_text = None
+        #Create all widgets and layouts
         self.create_widgets()
 
     def create_widgets(self):
-        # Welcome frame
+        # Welcome frame setup
         self.welcome_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.welcome_frame.pack_propagate(False)
         self.welcome_frame.pack()
-
+        # Welcome label
         welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Helvetica", 30), bg="#f6bfdd", fg="#fffafa")
         welcome_label.pack(pady=20)
-
+        # Name entry prompt
         name_label = tk.Label(self.welcome_frame, text="What's your name?", font=("Helvetica", 22), bg="#f6bfdd", fg="#fffafa")
         name_label.pack()
-
+        # Entry field for the players name
         self.name_entry = tk.Entry(self.welcome_frame, font=("Helvetica", 18))
         self.name_entry.pack(pady=10)
-
+        # Button to start game
         start_button = tk.Button(self.welcome_frame, text="Start", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.go_to_main_menu)
         start_button.pack(pady=10)
 
-        # Main Menu frame
+        # Main Menu frame setup
         self.main_menu_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.main_menu_frame.pack_propagate(False)
-
+        # Buttons for main menu
         play_button = tk.Button(self.main_menu_frame, text="Play", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_levels_page)
         play_button.pack(pady=50)
 
@@ -52,10 +53,10 @@ class MathGame:
         scoreboard_button = tk.Button(self.main_menu_frame, text="Scoreboard", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_scoreboard_page)
         scoreboard_button.pack(pady=50)
 
-        # Levels frame
+        # Levels frame setup
         self.levels_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.levels_frame.pack_propagate(False)
-
+        # Buttons for selecting difficulty levels
         easy_button = tk.Button(self.levels_frame, text="Easy", font=("Helvetica", 18), highlightbackground='#e089bc', command=lambda: self.start_game('easy'))
         easy_button.pack(pady=35)
 
@@ -64,44 +65,46 @@ class MathGame:
 
         hard_button = tk.Button(self.levels_frame, text="Hard", font=("Helvetica", 18), highlightbackground='#e089bc', command=lambda: self.start_game('hard'))
         hard_button.pack(pady=35)
-
+        # Back button for returning to main menu
         back_button_levels = tk.Button(self.levels_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_levels.pack(pady=35)
 
-        # How To frame
+        # How To frame setup
         self.how_to_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.how_to_frame.pack_propagate(False)
+        # Instructions on how to play the game
         how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time remaining.\n5. Try to get as many correct answers as possible!", font=("Helvetica", 18), bg="#f6bfdd", fg="#fffafa")
         how_to_text.pack(pady=20)
-
+        # Back Button for returning to main menu
         back_button_how_to = tk.Button(self.how_to_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_how_to.pack(pady=10)
 
-        # Scoreboard frame
+        # Scoreboard frame setup
         self.scoreboard_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.scoreboard_frame.pack_propagate(False)
+        # Placeholder for scoreboard text
         self.scoreboard_text = tk.Label(self.scoreboard_frame, text="Top Scores:\n", font=("Helvetica", 18), bg="#f6bfdd", fg="#fffafa")
         self.scoreboard_text.pack(pady=20)
-
+        # Back button for returning to main menu
         back_button_scoreboard = tk.Button(self.scoreboard_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_scoreboard.pack(pady=10)
 
-        # Game frame
+        # Game frame setup
         self.game_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.game_frame.pack_propagate(False)
-
+        # Label for displayoing the math problem
         self.problem_label = tk.Label(self.game_frame, text="", font=("Helvetica", 24), bg="#f6bfdd")
         self.problem_label.pack(pady=20)
-
+        # Entry field for user to input their answer in
         self.entry = tk.Entry(self.game_frame, font=("Helvetica", 24), width=5)
         self.entry.pack(pady=10)
-
+        # Button to check the user's answer
         check_button = tk.Button(self.game_frame, text="Check", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.check_answer)
         check_button.pack()
-
+        # Label for displaying the remaining time
         self.timer_label = tk.Label(self.game_frame, text="Time left: 10 seconds", font=("Helvetica", 18), bg="#f6bfdd")
         self.timer_label.pack()
-
+        # Label for displaying the current score
         self.score_label = tk.Label(self.game_frame, text="Score: 0", font=("Helvetica", 18), bg="#f6bfdd")
         self.score_label.pack()
 
@@ -109,15 +112,16 @@ class MathGame:
         bingo_frame = tk.Frame(self.game_frame, bg="#f6bfdd")
         bingo_frame.pack(pady=20)
         self.bingo_grid = [[None for _ in range(5)] for _ in range(3)]
-
+        # Creaste and position the bingo grid cells
         for i in range(3):
             for j in range(5):
                 self.bingo_grid[i][j] = tk.Label(bingo_frame, text="", width=5, height=2, borderwidth=1, relief="solid", font=("Helvetica", 16))
                 self.bingo_grid[i][j].grid(row=i, column=j)
 
-        self.game_frame.pack_forget()
+        self.game_frame.pack_forget() # Initially hide the game's frame
 
     def go_to_main_menu(self):
+        # Validate and process the player's name input
         player_name = self.name_entry.get().strip()
         if not player_name:
             messagebox.showerror("Error", "Please enter your name.")
@@ -126,37 +130,43 @@ class MathGame:
             messagebox.showerror("Error", "Please enter only letters for your name.")
             return
         
-        self.welcome_frame.pack_forget()
-        self.main_menu_frame.pack()
+        self.welcome_frame.pack_forget() # Hide the welcome frame
+        self.main_menu_frame.pack() # Show the main menu
 
     def show_levels_page(self):
+        # Switch to the levels selection page
         self.main_menu_frame.pack_forget()
         self.levels_frame.pack()
 
     def show_how_to_page(self):
+        # Switch to the How to page
         self.main_menu_frame.pack_forget()
         self.how_to_frame.pack()
 
     def show_scoreboard_page(self):
+        # Switch to the scoreboard page and display top scores
         self.main_menu_frame.pack_forget()
         self.scoreboard_frame.pack()
         self.display_top_scores()
 
     def show_main_menu(self):
+        # Switch back to the main menu
         self.levels_frame.pack_forget()
         self.how_to_frame.pack_forget()
         self.scoreboard_frame.pack_forget()
         self.main_menu_frame.pack()
 
     def generate_problem(self):
+        # Generate a simple math problem based on difficulty
         num1 = random.randint(1, 20)
         num2 = random.randint(1, 20)
         return f"{num1} + {num2}", num1 + num2
 
     def check_answer(self):
+        # Cancels any existing timer if the answer is being checked
         if self.timer_id:
             self.game_frame.after_cancel(self.timer_id)
-        
+        # Validate and check the user's answer
         user_answer = self.entry.get()
         try:
             user_answer = int(user_answer)
@@ -179,10 +189,10 @@ class MathGame:
         self.display_score()
 
         if self.questions_asked < 15:
-            self.new_problem()
+            self.new_problem() # Generate a new problem
         else:
-            self.end_game()
-
+            self.end_game() # End the game if maximum questions have been asked
+    # Generate a new math problem and reset the timer
     def new_problem(self):
         self.problem_text, self.correct_answer = self.generate_problem()
         self.problem_label.config(text=self.problem_text)
@@ -193,6 +203,7 @@ class MathGame:
         self.timer_id = self.game_frame.after(1000, self.update_timer)
 
     def update_timer(self):
+        # Update the timer display and check for timeout
         self.time_remaining -= 1
         self.timer_label.config(text=f"Time left: {self.time_remaining} seconds")
         if self.time_remaining > 0:
@@ -208,9 +219,10 @@ class MathGame:
             if self.questions_asked < 15:
                 self.new_problem()  # Generate a new question and restart the timer
             else:
-                self.end_game()
+                self.end_game() # End the game if the maximum questions have been asked
 
     def start_game(self, level):
+        # Initialise game state and start the game
         self.level = level
         self.points = 0
         self.questions_asked = 0
@@ -223,9 +235,11 @@ class MathGame:
         self.new_problem()
 
     def display_score(self):
+        # Update the score display
         self.score_label.config(text=f"Score: {self.points}")
 
     def update_bingo_board(self, mark):
+        # Update the bingo board with the mark
         for i in range(3):
             for j in range(5):
                 if self.bingo_grid[i][j].cget("text") == "":
@@ -233,6 +247,7 @@ class MathGame:
                     return
 
     def end_game(self):
+        # End the game and display final results
         player_name = self.name_entry.get().strip()
         if self.correct_answers > self.incorrect_answers:
             messagebox.showinfo("Game Over", f"You win! X: {self.correct_answers}, O: {self.incorrect_answers}, Score: {self.points}")
@@ -245,10 +260,12 @@ class MathGame:
         self.display_top_scores()
 
     def save_score(self, name, score):
+        # Save the player's score to a file
         with open("scores.txt", "a") as file:
             file.write(f"{name}: {score}\n")
 
     def display_top_scores(self):
+        # Read and display the top scores from the file
         try:
             with open("scores.txt", "r") as file:
                 scores = file.readlines()
