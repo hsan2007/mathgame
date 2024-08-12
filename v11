@@ -1,0 +1,192 @@
+import tkinter as tk
+from tkinter import messagebox
+import random
+import re  # Import regular expression module
+
+# Function to generate a new math problem
+def generate_problem():
+    # Generate two random integers between 1 and 20
+    num1 = random.randint(1, 20)
+    num2 = random.randint(1, 20)
+    # Return the math problem as a string and the correct answer
+    return f"{num1} + {num2}", num1 + num2
+
+# Function to check the user's answer
+def check_answer():
+    global timer_id, time_remaining, points, questions_asked, correct_answers, incorrect_answers
+    if timer_id:
+        game_frame.after_cancel(timer_id)  # Stop the current timer
+    
+    user_answer = entry.get()
+    try:
+        # Convert the user's answer to an integer
+        user_answer = int(user_answer)
+    except ValueError:
+        # Show an error message if the user's answer is not a valid number
+        messagebox.showerror("Error", "Please enter a valid number")
+        return
+    
+    if user_answer == correct_answer:
+        # If the user's answer is correct, show a success message
+        messagebox.showinfo("Correct", "Great job!")
+        update_bingo_board('X')  # Place an 'X' on the bingo board
+        correct_answers += 1  # Increment the number of correct answers
+    else:
+        # If the user's answer is incorrect, show an error message with the correct answer
+        messagebox.showerror("Incorrect", f"Wrong answer. The correct answer is {correct_answer}")
+        update_bingo_board('O')  # Place an 'O' on the bingo board
+        incorrect_answers += 1  # Increment the number of incorrect answers
+    
+    questions_asked += 1  # Increment the number of questions asked
+    display_score()  # Update the score display
+
+    if questions_asked < 15:
+        new_problem()  # Generate a new problem after checking the answer
+    else:
+        end_game()  # End the game after 15 questions
+
+# Function to display a new problem
+def new_problem():
+    global problem_text, correct_answer, timer_id, time_remaining
+    # Generate a new math problem and get the correct answer
+    problem_text, correct_answer = generate_problem()
+    # Update the problem label with the new problem
+    problem_label.config(text=problem_text)
+    # Clear the entry widget
+    entry.delete(0, tk.END)
+    
+    # Start the timer for the new problem
+    time_remaining = 10  # Set the timer to 10 seconds
+    timer_label.config(text=f"Time left: {time_remaining} seconds")
+    timer_id = game_frame.after(1000, update_timer)  # Start the timer
+
+# Function to update the timer
+def update_timer():
+    global timer_id, time_remaining
+    time_remaining -= 1  # Decrease the time remaining by 1 second
+    timer_label.config(text=f"Time left: {time_remaining} seconds")
+    if time_remaining > 0:
+        # If there is still time remaining, update the timer again after 1 second
+        timer_id = game_frame.after(1000, update_timer)
+    else:
+        # If the time is up, show a message and move to the next problem
+        messagebox.showinfo("Time's up!", "Out of time!")
+        update_bingo_board('O')  # Place an 'O' on the bingo board
+        incorrect_answers += 1  # Increment the number of incorrect answers
+        questions_asked += 1  # Increment the number of questions asked
+
+        if questions_asked < 15:
+            new_problem()  # Move to the next problem automatically
+        else:
+            end_game()  # End the game after 15 questions
+
+# Function to start the game
+def start_game():
+    global timer_id, time_remaining, points, questions_asked, correct_answers, incorrect_answers
+    player_name = name_entry.get().strip()  # Get player's name and remove extra spaces
+    if not player_name:
+        # Show an error message if the player's name is empty
+        messagebox.showerror("Error", "Please enter your name.")
+        return
+    
+    # Validate that the name contains only letters
+    if not re.match(r"^[a-zA-Z]+$", player_name):
+        # Show an error message if the player's name contains non-letter characters
+        messagebox.showerror("Error", "Please enter only letters for your name.")
+        return
+    
+    # Initialize the game variables
+    points = 0
+    questions_asked = 0
+    correct_answers = 0
+    incorrect_answers = 0
+    display_score()  # Display the initial score
+    
+    # Hide the welcome frame and show the game frame
+    welcome_frame.pack_forget()
+    game_frame.pack()
+    
+    # Start the first problem
+    new_problem()
+
+# Function to display the current score
+def display_score():
+    score_label.config(text=f"Score: {correct_answers * 10}")
+
+# Function to update the bingo board with 'X' or 'O'
+def update_bingo_board(mark):
+    for i in range(3):
+        for j in range(5):
+            if bingo_grid[i][j].cget("text") == "":
+                # Place the mark ('X' or 'O') in the next available cell
+                bingo_grid[i][j].config(text=mark)
+                return
+
+# Function to end the game and determine if the player won
+def end_game():
+    if correct_answers > incorrect_answers:
+        # Show a message that the player won if they have more correct answers
+        messagebox.showinfo("Game Over", f"You win! X: {correct_answers}, O: {incorrect_answers}")
+    else:
+        # Show a message that the player lost if they have more incorrect answers
+        messagebox.showinfo("Game Over", f"You lose! X: {correct_answers}, O: {incorrect_answers}")
+    game_frame.pack_forget()  # Hide the game frame
+    welcome_frame.pack()  # Show the welcome frame
+
+# Create the main window
+root = tk.Tk()
+root.title("Number Ninjas by Flow Computing")
+
+# Set background color
+root.configure(bg="#f6bfdd")
+
+# Welcome frame
+welcome_frame = tk.Frame(root, padx=50, pady=30, bg="#f6bfdd")
+welcome_frame.pack()
+
+welcome_label = tk.Label(welcome_frame, text="Welcome to Number Ninjas!", font=("Helvetica", 30), bg="#f6bfdd", fg="#fffafa") # Welcome to game
+welcome_label.pack(pady=20)
+
+name_label = tk.Label(welcome_frame, text="What's your name?", font=("Helvetica", 22), bg="#f6bfdd", fg="#fffafa") # Ask for name
+name_label.pack()
+
+name_entry = tk.Entry(welcome_frame, font=("Helvetica", 18))
+name_entry.pack(pady=10)
+
+start_button = tk.Button(welcome_frame, text="Start Game", font=("Helvetica", 18), highlightbackground='#3E4149', command=start_game) # Start game
+start_button.pack()
+
+# Game frame
+game_frame = tk.Frame(root, padx=50, pady=30, bg="#f6bfdd")
+
+problem_label = tk.Label(game_frame, text="", font=("Helvetica", 24), bg="#f6bfdd")
+problem_label.pack(pady=20)
+
+entry = tk.Entry(game_frame, font=("Helvetica", 24), width=5)
+entry.pack(pady=10)
+
+check_button = tk.Button(game_frame, text="Check", font=("Helvetica", 18), highlightbackground='#3E4149', command=check_answer)
+check_button.pack()
+
+timer_label = tk.Label(game_frame, text="Time left: 10 seconds", font=("Helvetica", 18), bg="#f6bfdd")
+timer_label.pack()
+
+score_label = tk.Label(game_frame, text="Score: 0", font=("Helvetica", 18), bg="#f6bfdd")
+score_label.pack()
+
+# Bingo grid frame and initialization
+bingo_frame = tk.Frame(game_frame, bg="#f6bfdd")
+bingo_frame.pack(pady=20)
+bingo_grid = [[None for _ in range(5)] for _ in range(3)]
+
+# Create a 3x5 grid of labels for the bingo board
+for i in range(3):
+    for j in range(5):
+        bingo_grid[i][j] = tk.Label(bingo_frame, text="", width=5, height=2, borderwidth=1, relief="solid", font=("Helvetica", 16))
+        bingo_grid[i][j].grid(row=i, column=j)
+
+# Hide the game frame at first
+game_frame.pack_forget()
+
+# Run the main loop
+root.mainloop()
