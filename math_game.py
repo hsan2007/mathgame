@@ -33,96 +33,97 @@ class MathGame:
         self.welcome_frame.pack_propagate(False)
         self.welcome_frame.pack()
         # Welcome label
-        welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Helvetica", 30), bg="#f6bfdd", fg="#000000")
-        welcome_label.pack(pady=20)
+        welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Georgia", 30), bg="#f6bfdd", fg="#000000")
+        welcome_label.grid(row=0, column=0, columnspan=3, pady=20)
+
         # Name entry prompt
-        name_label = tk.Label(self.welcome_frame, text="What's your name?", font=("Helvetica", 22), bg="#f6bfdd", fg="#000000")
-        name_label.pack()
+        name_label = tk.Label(self.welcome_frame, text="What's your name?", font=("Georgia", 22), bg="#f6bfdd", fg="#000000")
+        name_label.grid(row=1, column=1, pady=10)  # Align label to the right
         # Entry field for the players name
-        self.name_entry = tk.Entry(self.welcome_frame, font=("Helvetica", 18))
-        self.name_entry.pack(pady=10)
+        self.name_entry = tk.Entry(self.welcome_frame, font=("Georgia", 18))
+        self.name_entry.grid(row=2, column=1, pady=10, padx=5)  # Place entry next to label
         # Button to start game
-        start_button = tk.Button(self.welcome_frame, text="Start", font=("Helvetica", 18), fg="#000000", highlightbackground='#e089bc', command=self.go_to_main_menu)
-        start_button.pack(pady=10)
+        start_button = tk.Button(self.welcome_frame, text="Start", font=("Georgia", 18), fg="#000000", highlightbackground='#e089bc', command=self.go_to_main_menu)
+        start_button.grid(row=3, column=1, pady=10, padx=5)  # Place button next to entry field
         # Button to quit game
-        self.quit_button = tk.Button(self.welcome_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.quit)
-        self.quit_button.pack(pady=10)
+        self.quit_button = tk.Button(self.welcome_frame, text="Quit", font=("Georgia", 18), fg="#000000", highlightbackground='#e089bc', command=self.quit)
+        self.quit_button.grid(row=7, column=5, columnspan=3, pady=10)  # Adjusted to match grid layout
         # Main Menu frame setup
         self.main_menu_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.main_menu_frame.pack_propagate(False)
         # Buttons for main menu
         # Button for different levels
-        play_button = tk.Button(self.main_menu_frame, text="Play", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_levels_page)
+        play_button = tk.Button(self.main_menu_frame, text="Play", font=("Georgia", 18), fg="#000000", highlightbackground='#e089bc', command=self.show_levels_page)
         play_button.pack(pady=50)
         # Button for 'How to' page
-        how_to_button = tk.Button(self.main_menu_frame, text="How To", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_how_to_page)
+        how_to_button = tk.Button(self.main_menu_frame, text="How To", font=("Georgia", 18), fg="#000000", highlightbackground='#e089bc', command=self.show_how_to_page)
         how_to_button.pack(pady=50)
         # Button for Scoreboard
-        scoreboard_button = tk.Button(self.main_menu_frame, text="Scoreboard", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_scoreboard_page)
+        scoreboard_button = tk.Button(self.main_menu_frame, text="Scoreboard", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.show_scoreboard_page)
         scoreboard_button.pack(pady=50)
         # Button to quit game
-        self.quit_button = tk.Button(self.main_menu_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.quit)
+        self.quit_button = tk.Button(self.main_menu_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=50)
 
         # Levels frame setup
         self.levels_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.levels_frame.pack_propagate(False)
         # Buttons for selecting difficulty levels
-        easy_button = tk.Button(self.levels_frame, text="Easy", font=("Helvetica", 18), highlightbackground='#e089bc', command=lambda: self.start_game('easy'))
+        easy_button = tk.Button(self.levels_frame, text="Easy", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=lambda: self.start_game('easy'))
         easy_button.pack(pady=35)
 
-        medium_button = tk.Button(self.levels_frame, text="Medium", font=("Helvetica", 18), highlightbackground='#e089bc', command=lambda: self.start_game('medium'))
+        medium_button = tk.Button(self.levels_frame, text="Medium", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=lambda: self.start_game('medium'))
         medium_button.pack(pady=35)
 
-        hard_button = tk.Button(self.levels_frame, text="Hard", font=("Helvetica", 18), highlightbackground='#e089bc', command=lambda: self.start_game('hard'))
+        hard_button = tk.Button(self.levels_frame, text="Hard", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=lambda: self.start_game('hard'))
         hard_button.pack(pady=35)
         # Back button for returning to main menu
-        back_button_levels = tk.Button(self.levels_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
+        back_button_levels = tk.Button(self.levels_frame, text="Back", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_levels.pack(pady=35)
         # Quit button for quiting application
-        self.quit_button = tk.Button(self.levels_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.quit)
+        self.quit_button = tk.Button(self.levels_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=35)
         # How To frame setup
         self.how_to_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.how_to_frame.pack_propagate(False)
         # Instructions on how to play the game
-        how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time remaining.\n5. Try to get as many correct answers as possible!", font=("Helvetica", 18), bg="#f6bfdd", fg="#000000")
+        how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time remaining.\n5. Try to get as many correct answers as possible!", font=("Georgia", 18), bg="#f6bfdd", fg="#000000")
         how_to_text.pack(pady=20)
         # Back Button for returning to main menu
-        back_button_how_to = tk.Button(self.how_to_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
+        back_button_how_to = tk.Button(self.how_to_frame, text="Back", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_how_to.pack(pady=10)
         # Quit button for quitting application
-        self.quit_button = tk.Button(self.how_to_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.quit)
+        self.quit_button = tk.Button(self.how_to_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=10)
         # Scoreboard frame setup
         self.scoreboard_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.scoreboard_frame.pack_propagate(False)
         # Placeholder for scoreboard text
-        self.scoreboard_text = tk.Label(self.scoreboard_frame, text="Top Scores:\n", font=("Helvetica", 18), bg="#f6bfdd", fg="#000000")
+        self.scoreboard_text = tk.Label(self.scoreboard_frame, text="Top Scores:\n", font=("Georgia", 18), bg="#f6bfdd", fg="#000000")
         self.scoreboard_text.pack(pady=20)
         # Back button for returning to main menu
-        back_button_scoreboard = tk.Button(self.scoreboard_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
+        back_button_scoreboard = tk.Button(self.scoreboard_frame, text="Back", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_scoreboard.pack(pady=10)
         # Quit button for quitting the application
-        self.quit_button = tk.Button(self.scoreboard_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.quit)
+        self.quit_button = tk.Button(self.scoreboard_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=10)
         # Game frame setup
         self.game_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.game_frame.pack_propagate(False)
         # Label for displayoing the math problem
-        self.problem_label = tk.Label(self.game_frame, text="", font=("Helvetica", 24), bg="#f6bfdd")
+        self.problem_label = tk.Label(self.game_frame, text="", font=("Georgia", 24), bg="#f6bfdd")
         self.problem_label.pack(pady=20)
         # Entry field for user to input their answer in
-        self.entry = tk.Entry(self.game_frame, font=("Helvetica", 24), width=5)
+        self.entry = tk.Entry(self.game_frame, font=("Georgia", 24), width=5)
         self.entry.pack(pady=10)
         # Button to check the user's answer
-        check_button = tk.Button(self.game_frame, text="Check", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.check_answer)
+        check_button = tk.Button(self.game_frame, text="Check", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.check_answer)
         check_button.pack()
         # Label for displaying the remaining time
-        self.timer_label = tk.Label(self.game_frame, text="Time left: 10 seconds", font=("Helvetica", 18), bg="#f6bfdd")
+        self.timer_label = tk.Label(self.game_frame, text="Time left: 10 seconds", font=("Georgia", 18), bg="#f6bfdd")
         self.timer_label.pack()
         # Label for displaying the current score
-        self.score_label = tk.Label(self.game_frame, text="Score: 0", font=("Helvetica", 18), bg="#f6bfdd")
+        self.score_label = tk.Label(self.game_frame, text="Score: 0", font=("Georgia", 18), bg="#f6bfdd")
         self.score_label.pack()
 
         # Bingo grid frame and initialization
@@ -132,10 +133,10 @@ class MathGame:
         # Creaste and position the bingo grid cells
         for i in range(3):
             for j in range(5):
-                self.bingo_grid[i][j] = tk.Label(bingo_frame, text="", width=5, height=2, borderwidth=1, relief="solid", font=("Helvetica", 16))
+                self.bingo_grid[i][j] = tk.Label(bingo_frame, text="", width=5, height=2, borderwidth=1, relief="solid", font=("Georgia", 16))
                 self.bingo_grid[i][j].grid(row=i, column=j)
         # Quit button for quitting application        
-        self.quit_button = tk.Button(self.game_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.quit)
+        self.quit_button = tk.Button(self.game_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=10)
 
         self.game_frame.pack_forget() # Initially hide the game's frame
@@ -179,7 +180,7 @@ class MathGame:
     def generate_problem(self):
         # Generate a math problem based on difficulty
         if self.level == 'easy':
-            operation = random.choice(['+', '-'])
+            operation = random.choice(['+', '-']) # Randomly choose between addition and subtraction
             num1 = random.randint(20, 30)
             num2 = random.randint(1, 10)
             # return f"{num1} + {num2}", num1 + num2
