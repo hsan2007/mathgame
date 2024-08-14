@@ -177,10 +177,34 @@ class MathGame:
         self.main_menu_frame.pack()
 
     def generate_problem(self):
-        # Generate a simple math problem based on difficulty
-        num1 = random.randint(1, 20)
-        num2 = random.randint(1, 20)
-        return f"{num1} + {num2}", num1 + num2
+        # Generate a math problem based on difficulty
+        if self.level == 'easy':
+            operation = random.choice(['+', '-'])
+            num1 = random.randint(1, 20)
+            num2 = random.randint(1, 20)
+            return f"{num1} + {num2}", num1 + num2
+        elif self.level == 'medium':
+            operation = '*'
+            num1 = random.randint(1, 10)
+            num2 = random.randint(1, 10)
+        elif self.level == 'hard':
+            operation = random.choice(['*', '/'])
+            num1 = random.randint(1, 10)
+            num2 = random.randint(1, 10)
+            # Ensure no division by zero
+            if operation == '/':
+                num1 = num1 * num2
+        else:
+            raise ValueError("Invalid difficulty level")
+        
+        if operation == '+':
+            return f"{num1} + {num2}", num1 + num2
+        elif operation == '-':
+            return f"{num1} - {num2}", num1 - num2
+        elif operation == '*':
+            return f"{num1} * {num2}", num1 * num2
+        elif operation == '/':
+            return f"{num1} / {num2}", num1 // num2  # Use integer division 
 
     def check_answer(self):
         # Cancels any existing timer if the answer is being checked
