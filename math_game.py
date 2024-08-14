@@ -295,7 +295,7 @@ class MathGame:
         scores = [score.strip() for score in scores]
         scores.sort(key=lambda x: int(x.split(": ")[1]), reverse=True)
 
-        self.scoreboard_text.config(text="Top Scores:\n" + "\n".join(scores[:10]))
+        self.scoreboard_text.config(text="Scores:\n" + "\n".join(scores[:10]))
 
 # Create the main window and start the game
 root = tk.Tk()
