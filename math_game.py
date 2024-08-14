@@ -180,9 +180,9 @@ class MathGame:
         # Generate a math problem based on difficulty
         if self.level == 'easy':
             operation = random.choice(['+', '-'])
-            num1 = random.randint(1, 20)
-            num2 = random.randint(1, 20)
-            return f"{num1} + {num2}", num1 + num2
+            num1 = random.randint(20, 30)
+            num2 = random.randint(1, 10)
+            # return f"{num1} + {num2}", num1 + num2
         elif self.level == 'medium': # Medium level 
             operation = '*' # Multiplication questions
             num1 = random.randint(1, 5)
