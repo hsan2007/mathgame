@@ -183,16 +183,16 @@ class MathGame:
             num1 = random.randint(1, 20)
             num2 = random.randint(1, 20)
             return f"{num1} + {num2}", num1 + num2
-        elif self.level == 'medium':
-            operation = '*'
-            num1 = random.randint(1, 10)
-            num2 = random.randint(1, 10)
-        elif self.level == 'hard':
-            operation = random.choice(['*', '/'])
-            num1 = random.randint(1, 10)
-            num2 = random.randint(1, 10)
+        elif self.level == 'medium': # Medium level 
+            operation = '*' # Multiplication questions
+            num1 = random.randint(1, 5)
+            num2 = random.randint(1, 15)
+        elif self.level == 'hard': # Hard level
+            operation = random.choice(['*', '/']) # Multiplication or division
+            num1 = random.randint(1, 20)
+            num2 = random.randint(1, 15)
             # Ensure no division by zero
-            if operation == '/':
+            if operation == '/': 
                 num1 = num1 * num2
         else:
             raise ValueError("Invalid difficulty level")
