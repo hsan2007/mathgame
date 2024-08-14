@@ -28,16 +28,16 @@ class MathGame:
         self.welcome_frame.pack_propagate(False)
         self.welcome_frame.pack()
         # Welcome label
-        welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Helvetica", 30), bg="#f6bfdd", fg="#fffafa")
+        welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Helvetica", 30), bg="#f6bfdd", fg="#000000")
         welcome_label.pack(pady=20)
         # Name entry prompt
-        name_label = tk.Label(self.welcome_frame, text="What's your name?", font=("Helvetica", 22), bg="#f6bfdd", fg="#fffafa")
+        name_label = tk.Label(self.welcome_frame, text="What's your name?", font=("Helvetica", 22), bg="#f6bfdd", fg="#000000")
         name_label.pack()
         # Entry field for the players name
         self.name_entry = tk.Entry(self.welcome_frame, font=("Helvetica", 18))
         self.name_entry.pack(pady=10)
         # Button to start game
-        start_button = tk.Button(self.welcome_frame, text="Start", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.go_to_main_menu)
+        start_button = tk.Button(self.welcome_frame, text="Start", font=("Helvetica", 18), fg="#000000", highlightbackground='#e089bc', command=self.go_to_main_menu)
         start_button.pack(pady=10)
 
         # Main Menu frame setup
@@ -73,7 +73,7 @@ class MathGame:
         self.how_to_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.how_to_frame.pack_propagate(False)
         # Instructions on how to play the game
-        how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time remaining.\n5. Try to get as many correct answers as possible!", font=("Helvetica", 18), bg="#f6bfdd", fg="#fffafa")
+        how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time remaining.\n5. Try to get as many correct answers as possible!", font=("Helvetica", 18), bg="#f6bfdd", fg="#000000")
         how_to_text.pack(pady=20)
         # Back Button for returning to main menu
         back_button_how_to = tk.Button(self.how_to_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
@@ -83,7 +83,7 @@ class MathGame:
         self.scoreboard_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.scoreboard_frame.pack_propagate(False)
         # Placeholder for scoreboard text
-        self.scoreboard_text = tk.Label(self.scoreboard_frame, text="Top Scores:\n", font=("Helvetica", 18), bg="#f6bfdd", fg="#fffafa")
+        self.scoreboard_text = tk.Label(self.scoreboard_frame, text="Top Scores:\n", font=("Helvetica", 18), bg="#f6bfdd", fg="#000000")
         self.scoreboard_text.pack(pady=20)
         # Back button for returning to main menu
         back_button_scoreboard = tk.Button(self.scoreboard_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
