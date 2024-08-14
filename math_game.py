@@ -22,6 +22,11 @@ class MathGame:
         #Create all widgets and layouts
         self.create_widgets()
 
+        # Quit function 
+    def quit():
+        self.root.destroy()  # Close the main window
+
+
     def create_widgets(self):
         # Welcome frame setup
         self.welcome_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
@@ -39,7 +44,8 @@ class MathGame:
         # Button to start game
         start_button = tk.Button(self.welcome_frame, text="Start", font=("Helvetica", 18), fg="#000000", highlightbackground='#e089bc', command=self.go_to_main_menu)
         start_button.pack(pady=10)
-
+        quit_button = tk.Button(self.welcome_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=quit)
+        quit_button.pack(pady=10)
         # Main Menu frame setup
         self.main_menu_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.main_menu_frame.pack_propagate(False)
@@ -52,6 +58,9 @@ class MathGame:
 
         scoreboard_button = tk.Button(self.main_menu_frame, text="Scoreboard", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_scoreboard_page)
         scoreboard_button.pack(pady=50)
+
+        quit_button = tk.Button(self.main_menu_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=quit)
+        quit_button.pack(pady=50)
 
         # Levels frame setup
         self.levels_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
@@ -68,7 +77,9 @@ class MathGame:
         # Back button for returning to main menu
         back_button_levels = tk.Button(self.levels_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_levels.pack(pady=35)
-
+        # Quit button for quiting application
+        quit_button = tk.Button(self.levels_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=quit)
+        quit_button.pack(pady=35)
         # How To frame setup
         self.how_to_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.how_to_frame.pack_propagate(False)
@@ -78,7 +89,9 @@ class MathGame:
         # Back Button for returning to main menu
         back_button_how_to = tk.Button(self.how_to_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_how_to.pack(pady=10)
-
+        # Quit button for quitting application
+        quit_button = tk.Button(self.how_to_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=quit)
+        quit_button.pack(pady=10)
         # Scoreboard frame setup
         self.scoreboard_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.scoreboard_frame.pack_propagate(False)
@@ -88,7 +101,9 @@ class MathGame:
         # Back button for returning to main menu
         back_button_scoreboard = tk.Button(self.scoreboard_frame, text="Back", font=("Helvetica", 18), highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_scoreboard.pack(pady=10)
-
+        # Quit button for quitting the application
+        quit_button = tk.Button(self.scoreboard_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=quit)
+        quit_button.pack(pady=10)
         # Game frame setup
         self.game_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.game_frame.pack_propagate(False)
@@ -117,6 +132,9 @@ class MathGame:
             for j in range(5):
                 self.bingo_grid[i][j] = tk.Label(bingo_frame, text="", width=5, height=2, borderwidth=1, relief="solid", font=("Helvetica", 16))
                 self.bingo_grid[i][j].grid(row=i, column=j)
+        # Quit button for quitting application        
+        quit_button = tk.Button(self.game_frame, text="Quit", font=("Helvetica", 18), highlightbackground='#e089bc', command=quit)
+        quit_button.pack(pady=10)
 
         self.game_frame.pack_forget() # Initially hide the game's frame
 
