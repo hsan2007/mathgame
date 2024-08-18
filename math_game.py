@@ -52,7 +52,6 @@ class MathGame:
         self.main_menu_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
         self.main_menu_frame.pack_propagate(False)
         # Buttons for main menu
-        # Button for different levels
         play_button = tk.Button(self.main_menu_frame, text="Play", font=("Georgia", 18), fg="#000000", highlightbackground='#e089bc', command=self.show_levels_page)
         play_button.pack(pady=50)
         # Button for 'How to' page
@@ -208,7 +207,7 @@ class MathGame:
             return f"{num1} / {num2}", num1 // num2  # Use integer division 
 
     def check_answer(self):
-        # Cancels any existing timer if the answer is being checked
+        # Cancel any existing timer if the answer is being checked
         if self.timer_id:
             self.game_frame.after_cancel(self.timer_id)
         # Validate and check the user's answer
@@ -217,6 +216,7 @@ class MathGame:
             user_answer = int(user_answer)
         except ValueError:
             messagebox.showerror("Error", "Please enter a valid number")
+            self.new_problem() # Restart the question and timer
             return
         
         if user_answer == self.correct_answer:
