@@ -29,7 +29,7 @@ class MathGame:
 
     def create_widgets(self):
         # Welcome frame setup
-        self.welcome_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
+        self.welcome_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.welcome_frame.pack_propagate(False)
         self.welcome_frame.pack()
         # Welcome label
@@ -49,7 +49,7 @@ class MathGame:
         self.quit_button = tk.Button(self.welcome_frame, text="Quit", font=("Georgia", 18), fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.grid(row=7, column=5, columnspan=3, pady=10)  # Adjusted to match grid layout
         # Main Menu frame setup
-        self.main_menu_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
+        self.main_menu_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.main_menu_frame.pack_propagate(False)
         # Buttons for main menu
         play_button = tk.Button(self.main_menu_frame, text="Play", font=("Georgia", 18), fg="#000000", highlightbackground='#e089bc', command=self.show_levels_page)
@@ -65,7 +65,7 @@ class MathGame:
         self.quit_button.pack(pady=50)
 
         # Levels frame setup
-        self.levels_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
+        self.levels_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.levels_frame.pack_propagate(False)
         # Buttons for selecting difficulty levels
         easy_button = tk.Button(self.levels_frame, text="Easy", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=lambda: self.start_game('easy'))
@@ -83,7 +83,7 @@ class MathGame:
         self.quit_button = tk.Button(self.levels_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=35)
         # How To frame setup
-        self.how_to_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
+        self.how_to_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.how_to_frame.pack_propagate(False)
         # Instructions on how to play the game
         how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time remaining.\n5. Try to get as many correct answers as possible!", font=("Georgia", 18), bg="#f6bfdd", fg="#000000")
@@ -95,7 +95,7 @@ class MathGame:
         self.quit_button = tk.Button(self.how_to_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=10)
         # Scoreboard frame setup
-        self.scoreboard_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
+        self.scoreboard_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.scoreboard_frame.pack_propagate(False)
         # Placeholder for scoreboard text
         self.scoreboard_text = tk.Label(self.scoreboard_frame, text="Top Scores:\n", font=("Georgia", 18), bg="#f6bfdd", fg="#000000")
@@ -107,7 +107,7 @@ class MathGame:
         self.quit_button = tk.Button(self.scoreboard_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
         self.quit_button.pack(pady=10)
         # Game frame setup
-        self.game_frame = tk.Frame(self.root, width=600, height=400, bg="#f6bfdd")
+        self.game_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.game_frame.pack_propagate(False)
         # Label for displayoing the math problem
         self.problem_label = tk.Label(self.game_frame, text="", font=("Georgia", 24), bg="#f6bfdd")
