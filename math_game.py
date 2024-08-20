@@ -267,18 +267,25 @@ class MathGame:
                 self.end_game() # End the game if the maximum questions have been asked
 
     def start_game(self, level):
-        # Initialise game state and start the game
+        # Reset all game state variables
         self.level = level
         self.points = 0
         self.questions_asked = 0
         self.correct_answers = 0
         self.incorrect_answers = 0
+
+        # Clear the bingo grid
+        for i in range(2):
+            for j in range(5):
+                self.bingo_grid[i][j].config(text="")
+
+        # Update the score display
         self.display_score()
-        
+
+        # Switch to the game frame and start a new problem
         self.levels_frame.pack_forget()
         self.game_frame.pack()
         self.new_problem()
-
     def display_score(self):
         # Update the score display
         self.score_label.config(text=f"Score: {self.points}")
