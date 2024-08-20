@@ -128,9 +128,9 @@ class MathGame:
         # Bingo grid frame and initialization
         bingo_frame = tk.Frame(self.game_frame, bg="#f6bfdd")
         bingo_frame.pack(pady=20)
-        self.bingo_grid = [[None for _ in range(5)] for _ in range(3)]
+        self.bingo_grid = [[None for _ in range(5)] for _ in range(2)]
         # Creaste and position the bingo grid cells
-        for i in range(3):
+        for i in range(2):
             for j in range(5):
                 self.bingo_grid[i][j] = tk.Label(bingo_frame, text="", width=5, height=2, borderwidth=1, relief="solid", font=("Georgia", 16))
                 self.bingo_grid[i][j].grid(row=i, column=j)
@@ -233,7 +233,7 @@ class MathGame:
         self.questions_asked += 1
         self.display_score()
 
-        if self.questions_asked < 15:
+        if self.questions_asked < 10:
             self.new_problem() # Generate a new problem
         else:
             self.end_game() # End the game if maximum questions have been asked
@@ -261,7 +261,7 @@ class MathGame:
             self.questions_asked += 1
 
             self.entry.delete(0, tk.END)  # Clear the input box
-            if self.questions_asked < 15:
+            if self.questions_asked < 10:
                 self.new_problem()  # Generate a new question and restart the timer
             else:
                 self.end_game() # End the game if the maximum questions have been asked
