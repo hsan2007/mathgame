@@ -1,4 +1,4 @@
-"""This file is a math game that involves different levels to test the user's skills""" #Add docstring to explain purpose
+"""This file is a math game that involves different levels to test the user's skills""" # Docstring to explain purpose
 import tkinter as tk
 from tkinter import messagebox
 import random
@@ -76,6 +76,9 @@ class MathGame:
 
         hard_button = tk.Button(self.levels_frame, text="Hard", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=lambda: self.start_game('hard'))
         hard_button.pack(pady=35)
+
+        ninja_button = tk.Button(self.levels_frame, text="Ninja", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=lambda: self.start_game('ninja'))
+        ninja_button.pack(pady=35)
         # Back button for returning to main menu
         back_button_levels = tk.Button(self.levels_frame, text="Back", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.show_main_menu)
         back_button_levels.pack(pady=35)
@@ -187,6 +190,11 @@ class MathGame:
             operation = '*' # Multiplication questions
             num1 = random.randint(1, 5)
             num2 = random.randint(1, 15)
+
+        elif self.level == 'ninja': # Ninja level     
+            operation = random.choice(['*', '/','-','+']) # Randomly choose between addition, subtraction, division and multiplication  
+            num1 = random.randint(10, 15)
+            num2 = random.randint(1, 5)
         elif self.level == 'hard': # Hard level
             operation = random.choice(['*', '/']) # Multiplication or division
             num1 = random.randint(1, 20)
