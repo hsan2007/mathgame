@@ -193,7 +193,7 @@ class MathGame:
 
         elif self.level == 'ninja': # Ninja level     
             operation = random.choice(['*', '/','-','+']) # Randomly choose between addition, subtraction, division and multiplication  
-            num1 = random.randint(10, 15)
+            num1 = random.randint(10, 20)
             num2 = random.randint(1, 5)
         elif self.level == 'hard': # Hard level
             operation = random.choice(['*', '/']) # Multiplication or division
