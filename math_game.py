@@ -211,13 +211,18 @@ class MathGame:
         if self.timer_id:
             self.game_frame.after_cancel(self.timer_id)
         # Validate and check the user's answer
-        user_answer = self.entry.get()
-        try:
-            user_answer = int(user_answer)
-        except ValueError:
+        user_answer = self.entry.get().strip()# Strip white spaces from the input
+        if not user_answer.isdigit():
+        # Store the remaining time
+            remaining_time = self.time_remaining
+            # Display an error message if input is not a valid number
             messagebox.showerror("Error", "Please enter a valid number")
-            self.new_problem() # Restart the question and timer
-            return
+            # Clear the input field
+            self.entry.delete(0, tk.END)
+            # Restart the timer from where it left off
+            self.restart_timer(remaining_time)
+            return  # Return early to keep the current question and timer running
+        user_answer = int(user_answer)
         
         if user_answer == self.correct_answer:
             messagebox.showinfo("Correct", "Great job!")
@@ -237,6 +242,16 @@ class MathGame:
             self.new_problem() # Generate a new problem
         else:
             self.end_game() # End the game if maximum questions have been asked
+        
+    def restart_timer(self, remaining_time):
+
+        # Update the remaining time and restart the timer
+
+        self.time_remaining = remaining_time
+
+        self.timer_label.config(text=f"Time left: {self.time_remaining} seconds")
+
+        self.timer_id = self.game_frame.after(1000, self.update_timer)
     # Generate a new math problem and reset the timer
     def new_problem(self):
         self.problem_text, self.correct_answer = self.generate_problem()
