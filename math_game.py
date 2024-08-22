@@ -352,6 +352,14 @@ class MathGame:
 
         self.scoreboard_text.config(text="Scores:\n" + "\n".join(scores[:10]))
 
+        # Load the GIF image
+        self.scoreboard_frame.gif = tk.PhotoImage(file="ninja.png")
+
+        # Create a label to display the GIF
+        label = tk.Label(self.scoreboard_frame, image=self.scoreboard_frame.gif)
+        label.lift()
+        label.pack()
+
 # Create the main window and start the game
 root = tk.Tk()
 game = MathGame(root)
