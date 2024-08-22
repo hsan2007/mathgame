@@ -352,13 +352,16 @@ class MathGame:
 
         self.scoreboard_text.config(text="Scores:\n" + "\n".join(scores[:10]))
 
-        # Load the GIF image
-        self.scoreboard_frame.gif = tk.PhotoImage(file="ninja.png")
+            # Load the GIF image
+        if not hasattr(self.scoreboard_frame, 'gif'):  # Check if GIF is already loaded
+            self.scoreboard_frame.gif = tk.PhotoImage(file="ninja.png")
 
-        # Create a label to display the GIF
-        label = tk.Label(self.scoreboard_frame, image=self.scoreboard_frame.gif, bg='#f6bfdd')
-        label.lift()
-        label.pack()
+        # Create or update the label to display the GIF
+        if not hasattr(self.scoreboard_frame, 'image_label'):  # Check if image label already exists
+            self.scoreboard_frame.image_label = tk.Label(self.scoreboard_frame, image=self.scoreboard_frame.gif, bg='#f6bfdd')
+            self.scoreboard_frame.image_label.pack(side=tk.BOTTOM, pady=20)
+        else:
+            self.scoreboard_frame.image_label.config(image=self.scoreboard_frame.gif)  # Update existing label
 
 # Create the main window and start the game
 root = tk.Tk()
