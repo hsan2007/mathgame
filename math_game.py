@@ -356,7 +356,7 @@ class MathGame:
         self.scoreboard_frame.gif = tk.PhotoImage(file="ninja.png")
 
         # Create a label to display the GIF
-        label = tk.Label(self.scoreboard_frame, image=self.scoreboard_frame.gif)
+        label = tk.Label(self.scoreboard_frame, image=self.scoreboard_frame.gif, bg='#f6bfdd')
         label.lift()
         label.pack()
 
