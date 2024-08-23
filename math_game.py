@@ -339,9 +339,36 @@ class MathGame:
         self.display_top_scores()
 
     def save_score(self, name, score):
-        # Save the player's score to a file
-        with open("scores.txt", "a") as file:
-            file.write(f"{name}: {score}\n")
+        scores = []  # Initialize a empty list to store the top scores
+        updated = False  # A flag to check if the score for the user has been updated
+
+        # Try to open the scores file in read mode to load existing scores
+        try:
+            with open("scores.txt", "r") as file:
+                scores = file.readlines()  # Read all lines from the file into a list
+        except FileNotFoundError:
+            # If the file does not exist then start with an empty list
+            scores = []
+
+        # Go through the list of existing scores to check if the username is already present
+        for i in range(len(scores)):
+            # Split each line into a username and their score
+            existing_name, existing_score = scores[i].strip().split(": ")
+            
+            if existing_name == name:  # Check if the current username matches the one being saved
+                if int(existing_score) < score:  # Compare existing score with the new score
+                    scores[i] = f"{name}: {score}\n"  # Update the score if the new one is higher
+                updated = True  # Set the flag to indicate that the score was updated
+                break  # Exit the loop since the user's score is found and updated 
+
+        if not updated:
+            # If the user's name was not found in the list, add their new score to the list
+            scores.append(f"{name}: {score}\n")
+
+        # Open the file in write mode to save the updated list of scores
+        with open("scores.txt", "w") as file:
+            file.writelines(scores)  # Write all the scores back to the file
+
 
     def display_top_scores(self):
         # Read and display the top scores from the file
