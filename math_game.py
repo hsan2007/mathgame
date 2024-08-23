@@ -10,6 +10,8 @@ class MathGame:
         self.root = root
         self.root.title("Number Ninjas by Flow Computing")
         self.root.configure(bg="#f6bfdd")
+        # Load the GIF image once in the constructor
+        self.gif = tk.PhotoImage(file="ninja.png")
         # Initialize game state variables
         self.timer_id = None
         self.time_remaining = 10
@@ -35,7 +37,9 @@ class MathGame:
         # Welcome label
         welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Georgia", 30), bg="#f6bfdd", fg="#000000")
         welcome_label.grid(row=0, column=0, columnspan=3, pady=20)
-
+        # Add the GIF image to the welcome screen
+        image_label_welcome = tk.Label(self.welcome_frame, image=self.gif, bg='#f6bfdd')
+        image_label_welcome.grid(row=1, column=2, columnspan=3, pady=20)
         # Name entry prompt
         name_label = tk.Label(self.welcome_frame, text="What's your name?", font=("Georgia", 22), bg="#f6bfdd", fg="#000000")
         name_label.grid(row=1, column=1, pady=10)  # Align label to the right
@@ -185,7 +189,7 @@ class MathGame:
             operation = random.choice(['+', '-']) # Randomly choose between addition and subtraction
             num1 = random.randint(20, 30)
             num2 = random.randint(1, 10)
-            # return f"{num1} + {num2}", num1 + num2
+            return f"{num1} + {num2}", num1 + num2
         elif self.level == 'medium': # Medium level 
             operation = '*' # Multiplication questions
             num1 = random.randint(1, 5)
@@ -315,7 +319,7 @@ class MathGame:
 
     def update_bingo_board(self, mark):
         # Update the bingo board with the mark
-        for i in range(3):
+        for i in range(2):
             for j in range(5):
                 if self.bingo_grid[i][j].cget("text") == "":
                     self.bingo_grid[i][j].config(text=mark)
