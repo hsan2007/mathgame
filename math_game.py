@@ -195,17 +195,17 @@ class MathGame:
             num1 = random.randint(1, 5)
             num2 = random.randint(1, 15)
 
-        elif self.level == 'ninja': # Ninja level     
-            operation = random.choice(['*', '/','-','+']) # Randomly choose between addition, subtraction, division and multiplication  
-            num1 = random.randint(10, 20)
-            num2 = random.randint(1, 5)
-        elif self.level == 'hard': # Hard level
-            operation = random.choice(['*', '/']) # Multiplication or division
+        elif self.level == 'hard':  # Hard level
+            operation = random.choice(['*', '/'])  # Multiplication or division
             num1 = random.randint(1, 20)
             num2 = random.randint(1, 15)
-            # Ensure no division by zero
-            if operation == '/': 
+            if operation == '/':  # Make sure there's no division by zero
                 num1 = num1 * num2
+
+        elif self.level == 'ninja':  # Ninja level: HCF questions only
+            num1 = random.randint(10, 100)
+            num2 = random.randint(10, 100)
+            return f"HCF of {num1} and {num2}", self.calculate_hcf(num1, num2)
         else:
             raise ValueError("Invalid difficulty level")
         
