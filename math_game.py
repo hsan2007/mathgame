@@ -182,7 +182,10 @@ class MathGame:
         self.how_to_frame.pack_forget()
         self.scoreboard_frame.pack_forget()
         self.main_menu_frame.pack()
-
+    def calculate_hcf(self, a, b): # Define the HCF method
+        while b:
+            a, b = b, a % b
+        return a
     def generate_problem(self):
         # Generate a math problem based on difficulty
         if self.level == 'easy':
