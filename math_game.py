@@ -182,7 +182,7 @@ class MathGame:
         self.how_to_frame.pack_forget()
         self.scoreboard_frame.pack_forget()
         self.main_menu_frame.pack()
-    def calculate_hcf(self, a, b): # Define the HCF method
+    def calculate_hcf(self, a, b): # Define the method and calculate HCF of 2 numbers
         while b:
             a, b = b, a % b
         return a
