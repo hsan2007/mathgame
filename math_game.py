@@ -3,6 +3,8 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 import re
+from PIL import Image, ImageTk # Let's us upload jpg
+
 
 
 class MathGame:
@@ -30,10 +32,16 @@ class MathGame:
 
 
     def create_widgets(self):
+        # Load the background image using Pillow
+        self.bg_image = Image.open("image.jpg")
+        self.bg_image = ImageTk.PhotoImage(self.bg_image)
         # Welcome frame setup
         self.welcome_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.welcome_frame.pack_propagate(False)
         self.welcome_frame.pack()
+        # Background image label
+        bg_label = tk.Label(self.welcome_frame, image=self.bg_image)
+        bg_label.place(relwidth=1, relheight=1)  # Cover the entire frame
         # Welcome label
         welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Georgia", 30), bg="#f6bfdd", fg="#000000")
         welcome_label.grid(row=0, column=0, columnspan=3, pady=20)
@@ -116,7 +124,7 @@ class MathGame:
         # Game frame setup
         self.game_frame = tk.Frame(self.root, width=600, height=600, bg="#f6bfdd")
         self.game_frame.pack_propagate(False)
-        # Label for displayoing the math problem
+        # Label for displaying the math problem
         self.problem_label = tk.Label(self.game_frame, text="", font=("Georgia", 24), bg="#f6bfdd")
         self.problem_label.pack(pady=20)
         # Entry field for user to input their answer in
@@ -132,18 +140,20 @@ class MathGame:
         self.score_label = tk.Label(self.game_frame, text="Score: 0", font=("Georgia", 18), bg="#f6bfdd")
         self.score_label.pack()
 
+        # Quit button for quitting the game
+        self.quit_button = tk.Button(self.game_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
+        self.quit_button.pack(pady=10)
+
         # Bingo grid frame and initialization
         bingo_frame = tk.Frame(self.game_frame, bg="#f6bfdd")
         bingo_frame.pack(pady=20)
         self.bingo_grid = [[None for _ in range(5)] for _ in range(2)]
-        # Creaste and position the bingo grid cells
+
+        # Create and position the bingo grid cells
         for i in range(2):
             for j in range(5):
                 self.bingo_grid[i][j] = tk.Label(bingo_frame, text="", width=5, height=2, borderwidth=1, relief="solid", font=("Georgia", 16))
                 self.bingo_grid[i][j].grid(row=i, column=j)
-        # Quit button for quitting application        
-        self.quit_button = tk.Button(self.game_frame, text="Quit", font=("Georgia", 18),fg="#000000", highlightbackground='#e089bc', command=self.quit)
-        self.quit_button.pack(pady=10)
 
         self.game_frame.pack_forget() # Initially hide the game's frame
 
