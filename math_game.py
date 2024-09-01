@@ -45,9 +45,6 @@ class MathGame:
         # Welcome label
         welcome_label = tk.Label(self.welcome_frame, text="Welcome to Number Ninjas!", font=("Georgia", 30), bg="#f6bfdd", fg="#000000")
         welcome_label.grid(row=0, column=0, columnspan=3, pady=20)
-        # Add the GIF image to the welcome screen
-        image_label_welcome = tk.Label(self.welcome_frame, image=self.gif, bg='#f6bfdd')
-        image_label_welcome.grid(row=1, column=2, columnspan=3, pady=20)
         # Name entry prompt
         name_label = tk.Label(self.welcome_frame, text="What's your name?", font=("Georgia", 22), bg="#f6bfdd", fg="#000000")
         name_label.grid(row=1, column=1, pady=10)  # Align label to the right
