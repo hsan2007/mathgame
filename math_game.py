@@ -32,6 +32,9 @@ class MathGame:
 
 
     def create_widgets(self):
+        """
+        Create and layout all widgets for the game.
+        """
         # Load the background image using Pillow
         self.bg_image = Image.open("ninjabg.jpg")
         self.bg_image = ImageTk.PhotoImage(self.bg_image)
@@ -98,7 +101,7 @@ class MathGame:
         self.how_to_frame = tk.Frame(self.root, width=600, height=600, bg="#8ec9c1")
         self.how_to_frame.pack_propagate(False)
         # Instructions on how to play the game
-        how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time remaining.\n5. Try to get as many correct answers as possible!", font=("Georgia", 18), bg="#8ec9c1", fg="#000000")
+        how_to_text = tk.Label(self.how_to_frame, text="How to play:\n\n1. Solve the math problem displayed.\n2. Enter your answer and press Check.\n3. You have a limited time to answer each question.\n4. Your score is based on correct answers and time left.\n5. Try to get as many correct answers as possible!", font=("Georgia", 18), bg="#8ec9c1", fg="#000000")
         how_to_text.pack(pady=20)
         # Back Button for returning to main menu
         back_button_how_to = tk.Button(self.how_to_frame, text="Back", font=("Georgia", 18),fg="#000000", highlightbackground='#8ec9c1', command=self.show_main_menu)
